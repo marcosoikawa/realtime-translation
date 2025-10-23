@@ -22,25 +22,31 @@ A cloud-native platform that lets people who speak different languages converse 
 
 1. git clone https://github.com/your-org/realtime-translation.git  
 2. cd realtime-translation  
-3. npm install            # install front-end dependencies  
-4. pip install -r requirements.txt   # install back-end dependencies  
+3. npm install --legacy-peer-deps # install front-end dependencies  
+4. poetry install # install back-end dependencies  
 
 ### Quickstart
 
 1. Create `.env.local` in the root and set:  
      • AZURE_COMMUNICATION_CONNECTION_STRING  
      • AZURE_AI_ENDPOINT & AZURE_AI_KEY  
-2. Run orchestrator:  
+
+1. Run room:  
      ```powershell
-     cd orchestrator
-     uvicorn main:app --host 0.0.0.0 --port 8000
+     cd backend
+     poetry run uvicorn room.main:app --reload --host 0.0.0.0 --port 8082
+
+1. Run orchestrator:  
+     ```powershell
+     cd backend
+     poetry run uvicorn orchestrator.main:app --reload --host 0.0.0.0 --port 8081
      ```  
-3. Start the front-end:  
+3. Start the front-end:
      ```bash
-     cd ../web-ui
+     cd frontend
      npm run dev
      ```  
-4. Open http://localhost:3000, join or create a room, press “P” to speak.
+4. Open http://localhost:3000, Join as Guest.
 
 ## Demo
 
